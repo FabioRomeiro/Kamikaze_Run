@@ -30,11 +30,7 @@
 - **ESC**: Quit
 
 ### TODO:
-- Restart on 'R'
-- Menu;
 - Clouds at the background;
 - Upgrade animations;
-- Fix collision bug (Sometimes the bullet does not collide with the enemy);
 - Ammo system;
-- Game over message;
 - Code Refactoring;
