@@ -6,7 +6,7 @@
 ### Languages:
 - Lua
 
-### Frameworks:
+### Dependents:
 - LOVE2D
 
 ### How to execute the game:
@@ -21,7 +21,17 @@
 4. Execute the game:
 `"path\to\LOVE\love.exe" .`
 
+### Controls:
+- **W**: Up
+- **A**: Left
+- **S**: Down
+- **D**: Right
+- **SPACE**: Shot
+- **ESC**: Quit
+
 ### TODO:
+- Restart on 'R'
+- Menu;
 - Clouds at the background;
 - Upgrade animations;
 - Fix collision bug (Sometimes the bullet does not collide with the enemy);
