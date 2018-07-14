@@ -9,8 +9,17 @@
 ### Frameworks:
 - LOVE2D
 
-#### Purpose:
-A simple 2D game developed with the intention of learn more about Lua.
+### How to execute the game:
+1. [Install LOVE2D](https://love2d.org/)
+
+2. Clone the repository:
+`$ git clone https://github.com/FabioRomeiro/kamikazerun.git`
+
+3. Get into the repository folder:
+`$ cd kamikazerun/`
+
+4. Execute the game:
+`"path\to\LOVE\love.exe" .`
 
 ### TODO:
 - Clouds at the background;
