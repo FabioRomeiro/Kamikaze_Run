@@ -36,3 +36,15 @@ function animatePlayerSprite(dt)
     end
   end
 end
+
+function destroy_airplane()
+  -- character.quad = love.graphics.newQuad(character.frameScale[1],character.frameScale[2],character.frameScale[1],character.frameScale[2],character.frameScale[1],character.frameScale[2])
+  single_explosion_sfx:play()
+  airplane_sfx:stop()
+  character.sprite = love.graphics.newImage(files.explosionSpriteDirectory .. '1.png')
+end
+
+function destroy_kami_airplane(kami)
+  single_kami_explosion_sfx:play()
+  kami.sprite = love.graphics.newImage(files.explosionSpriteDirectory .. '2.png')
+end

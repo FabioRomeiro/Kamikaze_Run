@@ -1,8 +1,7 @@
 kamikaze = {
-  sprite = love.graphics.newImage(files.kamikazeSpriteDirectory .. 'kami.png'),
   initPosition = {screen.width + 167, math.random(screen.height)}, -- {x,y}
-  frameScale = {160,167}, -- {w,h}
-  max = 8
+  frameScale = {160,26}, -- {w,h}
+  max = 3
 }
 
 enemies = {}
@@ -11,8 +10,9 @@ function spawnEnemy()
   enemy = {
     x = kamikaze.initPosition[1],
     y = math.random(-kamikaze.frameScale[2],screen.height),
-    velocity = math.random(3,15),
-    displacement = math.random(-1,1)
+    velocity = math.random(3,10),
+    displacement = math.random(-1,1),
+    sprite = love.graphics.newImage(files.kamikazeSpriteDirectory .. 'kami.png')
   }
   table.insert(enemies,enemy)
 end
