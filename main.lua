@@ -22,6 +22,7 @@ function love.load()
   airplane_sfx:play()
 
   single_explosion_sfx = love.audio.newSource(files.sfxDirectory.."single_explosion.wav",'static')
+  enemy_explosion_sfx = love.audio.newSource(files.sfxDirectory.."enemy_explosion.wav",'static')
   shot_sfx = love.audio.newSource(files.sfxDirectory.."shot.wav",'static')
   single_kami_explosion_sfx = love.audio.newSource(files.sfxDirectory.."single_kami_explosion.wav",'static')
   bg_game_over_music = love.audio.newSource(files.sfxDirectory.."bg_game_over_music.wav",'stream')

@@ -71,6 +71,8 @@ function check_shot_collision()
     for j=#enemies,1,-1 do
       if(is_colliding(character.shots[i].x, character.shots[i].y, character.shots[i].width, character.shots[i].height,
                       enemies[j].x, enemies[j].y, kamikaze.frameScale[1], kamikaze.frameScale[2])) then
+              enemy_explosion_sfx:stop()
+              enemy_explosion_sfx:play()
               table.remove(character.shots,i)
               table.remove(enemies,j)
               break

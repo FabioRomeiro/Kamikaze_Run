@@ -30,7 +30,6 @@
 - **ESC**: Quit
 
 ### TODO:
-- Clouds at the background;
 - Upgrade animations;
 - Ammo system;
 - Code Refactoring;
