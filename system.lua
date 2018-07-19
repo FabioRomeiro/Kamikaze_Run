@@ -5,6 +5,7 @@ files = {
 files.playerSpriteDirectory = files.imagesDirectory .. 'playerSprite/'
 files.kamikazeSpriteDirectory = files.imagesDirectory .. 'kamiSprite/'
 files.explosionSpriteDirectory = files.imagesDirectory .. 'explosionSprite/'
+files.cloudSpriteDirectory = files.imagesDirectory .. 'cloudSprite/'
 
 screen = {
   width = 1000,

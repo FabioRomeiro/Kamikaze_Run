@@ -35,10 +35,15 @@ function love.update(dt)
     if love.keyboard.isDown('w','a','s','d') then movePlayer() end
 
     clearEnemies()
+    clearClouds()
     if #enemies < kamikaze.max then
       spawnEnemy()
     end
+    if #spawnedClouds < cloud.max then
+      spawnCloud()
+    end
     moveEnemy()
+    moveCloud()
     moveShot()
 
     check_collision()
@@ -49,8 +54,13 @@ end
 function love.draw()
   love.graphics.draw(screen.inGameBG,0,0)
   character.draw = love.graphics.draw(character.sprite,xyP[1],xyP[2])
+
   for k,kami in pairs(enemies) do
     love.graphics.draw(kami.sprite,kami.x,kami.y)
+  end
+
+  for k,cloud in pairs(spawnedClouds) do
+    love.graphics.draw(cloud.sprite,cloud.x,cloud.y)
   end
 
   for k,shot in pairs(character.shots) do

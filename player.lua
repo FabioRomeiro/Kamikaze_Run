@@ -69,7 +69,7 @@ end
 function check_shot_collision()
   for i=#character.shots,1,-1 do
     for j=#enemies,1,-1 do
-      if(is_colliding(character.shots[1].x, character.shots[1].y, character.shots[1].width, character.shots[1].height,
+      if(is_colliding(character.shots[i].x, character.shots[i].y, character.shots[i].width, character.shots[i].height,
                       enemies[j].x, enemies[j].y, kamikaze.frameScale[1], kamikaze.frameScale[2])) then
               table.remove(character.shots,i)
               table.remove(enemies,j)

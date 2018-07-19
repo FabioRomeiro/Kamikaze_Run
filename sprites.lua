@@ -1,5 +1,39 @@
 listAirplaneFrames = {}
 
+cloud = {
+  initPosition = {screen.width + 167, math.random(screen.height)}, -- {x,y}
+  frameScale = {600,355}, -- {w,h}
+  max = 3
+}
+
+spawnedClouds = {}
+
+function spawnCloud()
+  spawnedCloud = {
+    x = cloud.initPosition[1],
+    y = math.random(-cloud.frameScale[2],screen.height),
+    velocity = math.random(3,15),
+    sprite = love.graphics.newImage(files.cloudSpriteDirectory .. tostring(math.random(1,3)) .. '.png'),
+  }
+  scaleNumber = math.random()
+  spawnedCloud.scale = love.graphics.scale(scaleNumber, scaleNumber)
+  table.insert(spawnedClouds,spawnedCloud)
+end
+
+function moveCloud()
+  for k, cloud in pairs(spawnedClouds) do
+    cloud.x = cloud.x - cloud.velocity
+  end
+end
+
+function clearClouds()
+  for i = #spawnedClouds,1,-1 do
+    if spawnedClouds[i].x < -cloud.frameScale[1] then
+      table.remove(spawnedClouds, i)
+    end
+  end
+end
+
 function listPlayerSprites()
   for frame = 1,character.numberFrames do
     listAirplaneFrames[frame] = love.graphics.newQuad((frame-1)*character.frameScale[1],0,character.frameScale[1],character.frameScale[2],4000,167)
