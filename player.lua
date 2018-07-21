@@ -7,9 +7,11 @@ playerBlueprint = {
   delayBtwnFrames = 0.15,
   passedTimeSinceLastFrame = 0,
   velocity = 10,
-  shots = {}
+  shots = {},
+  points = 0
 }
-character = playerBlueprint
+
+character = deepcopy(playerBlueprint)
 xyP = character.initPosition
 
 function shoot()
@@ -75,6 +77,7 @@ function check_shot_collision()
               enemy_explosion_sfx:play()
               table.remove(character.shots,i)
               table.remove(enemies,j)
+              character.points = character.points + 100
               break
       end
     end
@@ -82,6 +85,10 @@ function check_shot_collision()
 end
 
 function reset_player()
-  character = playerBlueprint
+  character = deepcopy(playerBlueprint)
   xyP = character.initPosition
+end
+
+function increment_points(add)
+  character.points = character.points + add
 end
