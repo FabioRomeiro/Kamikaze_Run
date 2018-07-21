@@ -6,20 +6,30 @@
 ### Languages:
 - Lua
 
-### Dependents:
+### Dependencies:
 - LOVE2D
 
 ### How to execute the game:
 1. [Install LOVE2D](https://love2d.org/)
 
 2. Clone the repository:
-`$ git clone https://github.com/FabioRomeiro/kamikazerun.git`
+```
+$ git clone https://github.com/FabioRomeiro/kamikazerun.git
+```
 
 3. Get into the repository folder:
-`$ cd kamikazerun/`
+```
+$ cd kamikazerun/
+```
 
 4. Execute the game:
-`"path\to\LOVE\love.exe" .`
+```
+"path\to\LOVE\love.exe" .
+```
+if on powershell and the love2d is installed on the default folder:
+```cmd
+"C:\Program Files\LOVE\love.exe" .
+```
 
 ### Controls:
 - **W**: Up
