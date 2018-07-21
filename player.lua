@@ -1,4 +1,4 @@
-character = {
+playerBlueprint = {
   sprite = love.graphics.newImage(files.playerSpriteDirectory .. '1.png'),
   initPosition = {30,(screen.height/2)-(167/2)}, -- {x,y}
   frameScale = {160,58}, -- {w,h}
@@ -9,7 +9,7 @@ character = {
   velocity = 10,
   shots = {}
 }
-
+character = playerBlueprint
 xyP = character.initPosition
 
 function shoot()
@@ -79,4 +79,9 @@ function check_shot_collision()
       end
     end
   end
+end
+
+function reset_player()
+  character = playerBlueprint
+  xyP = character.initPosition
 end

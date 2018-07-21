@@ -82,4 +82,7 @@ function love.keypressed(input)
       shoot()
     end
   end
+  if GAME_OVER and input == 'r' then
+    restart_game()
+  end
 end

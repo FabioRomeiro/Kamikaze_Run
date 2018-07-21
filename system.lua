@@ -18,3 +18,14 @@ function changes_bg_music(current, next)
   current:stop()
   next:play()
 end
+
+function restart_game()
+  math.randomseed(os.time())
+  changes_bg_music(bg_game_over_music,bg_music)
+
+  reset_player()
+  enemies = {}
+  spawnedClouds = {}
+
+  GAME_OVER = false
+end
