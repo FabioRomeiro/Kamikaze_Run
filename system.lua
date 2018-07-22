@@ -6,6 +6,7 @@ files.playerSpriteDirectory = files.imagesDirectory .. 'playerSprite/'
 files.kamikazeSpriteDirectory = files.imagesDirectory .. 'kamiSprite/'
 files.explosionSpriteDirectory = files.imagesDirectory .. 'explosionSprite/'
 files.cloudSpriteDirectory = files.imagesDirectory .. 'cloudSprite/'
+files.ammoBoxSpriteDirectory = files.imagesDirectory .. 'ammoBoxSprite/'
 
 screen = {
   width = 1000,
@@ -13,6 +14,8 @@ screen = {
   inGameBG = love.graphics.newImage(files.imagesDirectory .. 'sky.png'),
   gameOverBG = love.graphics.newImage(files.imagesDirectory .. 'game_over_bg.png')
 }
+
+timer = 0
 
 function changes_bg_music(current, next)
   current:stop()
@@ -39,6 +42,8 @@ function restart_game()
   changes_bg_music(bg_game_over_music,bg_music)
 
   reset_player()
+  airplane_sfx:play()
+  ammoBoxes = {}
   enemies = {}
   spawnedClouds = {}
 

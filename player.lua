@@ -8,6 +8,7 @@ playerBlueprint = {
   passedTimeSinceLastFrame = 0,
   velocity = 10,
   shots = {},
+  ammo = 10,
   points = 0
 }
 
@@ -17,6 +18,7 @@ xyP = character.initPosition
 function shoot()
   shot_sfx:stop()
   shot_sfx:play()
+  character.ammo = character.ammo -1
 
   local shot = {
     x = xyP[1]+character.frameScale[1],
@@ -55,6 +57,7 @@ end
 function check_collision()
   check_airplane_collision()
   check_shot_collision()
+  check_ammobox_collision()
 end
 
 function check_airplane_collision()
@@ -68,6 +71,19 @@ function check_airplane_collision()
   end
 end
 
+function check_ammobox_collision()
+  for i=#ammoBoxes,1,-1 do
+    if(is_colliding(character.initPosition[1], character.initPosition[2], character.frameScale[1], character.frameScale[2],
+                    ammoBoxes[i].x, ammoBoxes[i].y, box.frameScale[1], box.frameScale[2])) then
+            table.remove(ammoBoxes,i)
+            increment_ammo(5)
+            ammo_sfx:stop()
+            ammo_sfx:play()
+            break
+    end
+  end
+end
+
 function check_shot_collision()
   for i=#character.shots,1,-1 do
     for j=#enemies,1,-1 do
@@ -77,7 +93,7 @@ function check_shot_collision()
               enemy_explosion_sfx:play()
               table.remove(character.shots,i)
               table.remove(enemies,j)
-              character.points = character.points + 100
+              increment_points(100)
               break
       end
     end
@@ -91,4 +107,8 @@ end
 
 function increment_points(add)
   character.points = character.points + add
+end
+
+function increment_ammo(add)
+  character.ammo = character.ammo + add
 end

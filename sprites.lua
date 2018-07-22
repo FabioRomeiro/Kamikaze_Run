@@ -7,15 +7,23 @@ cloud = {
 }
 
 spawnedClouds = {}
+ammoBoxes = {}
 
-scorefont = love.graphics.newFont("font/NothingYouCouldDo.ttf", 42)
+scorefont = love.graphics.newFont("font/Kamikaze3DGradient.ttf", 32)
 score = {
   points = love.graphics.newText(scorefont, "0"),
 }
 
 function showPoints(points)
-  score.points:set (tostring(points))
-  love.graphics.draw(score.points, 10, 5, 0)
+  text = 'People saved: ' .. tostring(points)
+  score.points:set(text)
+  love.graphics.draw(score.points, 100, 25, 0)
+end
+
+function showAmmo(ammo)
+  text = 'Ammo: ' .. tostring(ammo)
+  score.points:set (text)
+  love.graphics.draw(score.points, screen.width - 300, 25, 0)
 end
 
 function spawnCloud()
@@ -30,6 +38,7 @@ function spawnCloud()
   table.insert(spawnedClouds,spawnedCloud)
 end
 
+
 function moveCloud()
   for k, cloud in pairs(spawnedClouds) do
     cloud.x = cloud.x - cloud.velocity
@@ -43,6 +52,39 @@ function clearClouds()
     end
   end
 end
+
+box = {
+  initPosition = {math.random(screen.width), -144}, -- {x,y}
+  frameScale = {100,144}, -- {w,h}
+  max = 1
+}
+
+function spawnAmmoBox()
+  ammoBox = {
+    x = math.random(box.initPosition[1]),
+    y = box.initPosition[2],
+    velocity = 3,
+    displacement = math.random(-1,1),
+    sprite = love.graphics.newImage(files.ammoBoxSpriteDirectory .. '1.png')
+  }
+  table.insert(ammoBoxes,ammoBox)
+end
+
+function moveAmmoBox()
+  for k, ammobox in pairs(ammoBoxes) do
+    ammobox.y = ammobox.y + ammobox.velocity
+    ammobox.x = ammobox.x + ammobox.displacement
+  end
+end
+
+function clearAmmoBoxes()
+  for i = #ammoBoxes,1,-1 do
+    if ammoBoxes[i].y > screen.height then
+      table.remove(ammoBoxes, i)
+    end
+  end
+end
+
 
 function listPlayerSprites()
   for frame = 1,character.numberFrames do
