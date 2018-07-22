@@ -12,7 +12,8 @@ screen = {
   width = 1000,
   height = 600,
   inGameBG = love.graphics.newImage(files.imagesDirectory .. 'sky.png'),
-  gameOverBG = love.graphics.newImage(files.imagesDirectory .. 'game_over_bg.png')
+  gameOverBG = love.graphics.newImage(files.imagesDirectory .. 'game_over_bg.png'),
+  pauseBG = love.graphics.newImage(files.imagesDirectory .. 'pause_bg.png')
 }
 
 timer = 0

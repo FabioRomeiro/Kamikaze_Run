@@ -22,8 +22,7 @@ end
 
 function love.update(dt)
   timer = timer + dt
-
-  if not GAME_OVER then
+  if not GAME_OVER and not PAUSE then
     if love.keyboard.isDown('w','a','s','d') then
       movePlayer()
     end
@@ -76,6 +75,10 @@ function love.draw()
     love.graphics.draw(screen.gameOverBG,0,0)
   end
 
+  if PAUSE then
+    love.graphics.draw(screen.pauseBG,0,0)
+  end
+
   showPoints(character.points)
   showAmmo(character.ammo)
 end
@@ -85,6 +88,15 @@ function love.keypressed(input)
     love.event.quit()
   end
   if not GAME_OVER then
+    if input == 'p' then
+      if PAUSE then
+        PAUSE = false
+        airplane_sfx:play()
+      else
+        PAUSE = true
+        airplane_sfx:stop()
+      end
+    end
     if input == 'space' then
       if character.ammo>0 then
         shoot()
