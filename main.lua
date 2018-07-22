@@ -48,6 +48,8 @@ function love.update(dt)
     moveShot()
 
     check_collision()
+
+    increment_points(1)
   end
 end
 
@@ -71,6 +73,8 @@ function love.draw()
   if GAME_OVER then
     love.graphics.draw(screen.gameOverBG,0,0)
   end
+
+  showPoints(character.points)
 end
 
 function love.keypressed(input)
@@ -81,5 +85,8 @@ function love.keypressed(input)
     if input == 'space' then
       shoot()
     end
+  end
+  if GAME_OVER and input == 'r' then
+    restart_game()
   end
 end

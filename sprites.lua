@@ -8,6 +8,16 @@ cloud = {
 
 spawnedClouds = {}
 
+scorefont = love.graphics.newFont("font/NothingYouCouldDo.ttf", 42)
+score = {
+  points = love.graphics.newText(scorefont, "0"),
+}
+
+function showPoints(points)
+  score.points:set (tostring(points))
+  love.graphics.draw(score.points, 10, 5, 0)
+end
+
 function spawnCloud()
   spawnedCloud = {
     x = cloud.initPosition[1],

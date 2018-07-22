@@ -1,4 +1,4 @@
-character = {
+playerBlueprint = {
   sprite = love.graphics.newImage(files.playerSpriteDirectory .. '1.png'),
   initPosition = {30,(screen.height/2)-(167/2)}, -- {x,y}
   frameScale = {160,58}, -- {w,h}
@@ -7,9 +7,11 @@ character = {
   delayBtwnFrames = 0.15,
   passedTimeSinceLastFrame = 0,
   velocity = 10,
-  shots = {}
+  shots = {},
+  points = 0
 }
 
+character = deepcopy(playerBlueprint)
 xyP = character.initPosition
 
 function shoot()
@@ -75,8 +77,18 @@ function check_shot_collision()
               enemy_explosion_sfx:play()
               table.remove(character.shots,i)
               table.remove(enemies,j)
+              character.points = character.points + 100
               break
       end
     end
   end
+end
+
+function reset_player()
+  character = deepcopy(playerBlueprint)
+  xyP = character.initPosition
+end
+
+function increment_points(add)
+  character.points = character.points + add
 end
