@@ -16,8 +16,7 @@ character = deepcopy(playerBlueprint)
 xyP = character.initPosition
 
 function shoot()
-  shot_sfx:stop()
-  shot_sfx:play()
+  audio_repeat(shot_sfx)
   character.ammo = character.ammo -1
 
   local shot = {
@@ -30,7 +29,7 @@ function shoot()
   table.insert(character.shots,shot)
 end
 
-function moveShot()
+function move_shot()
   for i=#character.shots,1,-1 do
     if character.shots[i].x < screen.width then
       character.shots[i].x = character.shots[i].x + 10
@@ -40,18 +39,11 @@ function moveShot()
   end
 end
 
-function movePlayer()
+function move_player()
   if love.keyboard.isDown('w') then xyP[2] = xyP[2] - character.velocity end
   if love.keyboard.isDown('s') then xyP[2] = xyP[2] + character.velocity end
   if love.keyboard.isDown('d') then xyP[1] = xyP[1] + character.velocity end
   if love.keyboard.isDown('a') then xyP[1] = xyP[1] - character.velocity end
-end
-
-function is_colliding(x1,y1,l1,a1,x2,y2,l2,a2)
-  return x2 < x1 + l1 and
-         x1 < x2 + l2 and
-         y1 < y2 + a2 and
-         y2 < y1 + a1
 end
 
 function check_collision()
@@ -77,8 +69,7 @@ function check_ammobox_collision()
                     ammoBoxes[i].x, ammoBoxes[i].y, box.frameScale[1], box.frameScale[2])) then
             table.remove(ammoBoxes,i)
             increment_ammo(5)
-            ammo_sfx:stop()
-            ammo_sfx:play()
+            audio_repeat(ammo_sfx)
             break
     end
   end
@@ -89,8 +80,7 @@ function check_shot_collision()
     for j=#enemies,1,-1 do
       if(is_colliding(character.shots[i].x, character.shots[i].y, character.shots[i].width, character.shots[i].height,
                       enemies[j].x, enemies[j].y, kamikaze.frameScale[1], kamikaze.frameScale[2])) then
-              enemy_explosion_sfx:stop()
-              enemy_explosion_sfx:play()
+              audio_repeat(enemy_explosion_sfx)
               table.remove(character.shots,i)
               table.remove(enemies,j)
               increment_points(100)
@@ -100,9 +90,10 @@ function check_shot_collision()
   end
 end
 
-function reset_player()
-  character = deepcopy(playerBlueprint)
-  xyP = character.initPosition
+function destroy_airplane()
+  single_explosion_sfx:play()
+  airplane_sfx:stop()
+  character.sprite = love.graphics.newImage(files.explosionSpriteDirectory .. '1.png')
 end
 
 function increment_points(add)
@@ -111,4 +102,9 @@ end
 
 function increment_ammo(add)
   character.ammo = character.ammo + add
+end
+
+function reset_player()
+  character = deepcopy(playerBlueprint)
+  xyP = character.initPosition
 end

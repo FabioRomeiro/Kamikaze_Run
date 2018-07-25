@@ -1,7 +1,7 @@
 require "system"
 require "player"
 require "kamikaze"
-require "sprites"
+require "environment"
 require "sfx"
 
 function love.load()
@@ -15,8 +15,6 @@ function love.load()
   bg_music:play()
 
   airplane_sfx:play()
-
-  -- listPlayerSprites()
 end
 
 
@@ -24,27 +22,30 @@ function love.update(dt)
   timer = timer + dt
   if not GAME_OVER and not PAUSE then
     if love.keyboard.isDown('w','a','s','d') then
-      movePlayer()
+      move_player()
     end
 
-    clearAmmoBoxes()
-    clearEnemies()
-    clearClouds()
+    clear_ammo_boxes()
+    clear_enemies()
+    clear_clouds()
 
     if #ammoBoxes < box.max and timer >= math.random(5,10) then
-      spawnAmmoBox()
+      spawn_ammo_box()
       timer = 0
     end
+
     if #enemies < kamikaze.max then
-      spawnEnemy()
+      spawn_enemy()
     end
+
     if #spawnedClouds < cloud.max then
-      spawnCloud()
+      spawn_cloud()
     end
-    moveAmmoBox()
-    moveEnemy()
-    moveCloud()
-    moveShot()
+
+    move_ammo_box()
+    move_enemy()
+    move_cloud()
+    move_shot()
 
     check_collision()
   end
@@ -79,34 +80,36 @@ function love.draw()
     love.graphics.draw(screen.pauseBG,0,0)
   end
 
-  showPoints(character.points)
-  showAmmo(character.ammo)
+  show_points(character.points)
+  show_ammo(character.ammo)
 end
 
 function love.keypressed(input)
   if input == 'escape' then
     love.event.quit()
   end
-  if not GAME_OVER then
-    if input == 'p' then
-      if PAUSE then
-        PAUSE = false
-        airplane_sfx:play()
-      else
-        PAUSE = true
-        airplane_sfx:stop()
-      end
+
+  if input == 'r' then
+    restart_game()
+  end
+
+  if input == 'p' and not GAME_OVER then
+    if PAUSE then
+      PAUSE = false
+      airplane_sfx:play()
+    else
+      PAUSE = true
+      airplane_sfx:stop()
     end
+  end
+
+  if not GAME_OVER and not PAUSE then
     if input == 'space' then
       if character.ammo>0 then
         shoot()
       else
-        out_of_ammo_sfx:stop()
-        out_of_ammo_sfx:play()
+        audio_repeat(out_of_ammo_sfx)
       end
     end
-  end
-  if GAME_OVER and input == 'r' then
-    restart_game()
   end
 end

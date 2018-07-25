@@ -38,12 +38,25 @@ function deepcopy(orig)
     return copy
 end
 
+function is_colliding(x1,y1,l1,a1,x2,y2,l2,a2)
+  return x2 < x1 + l1 and
+         x1 < x2 + l2 and
+         y1 < y2 + a2 and
+         y2 < y1 + a1
+end
+
+function audio_repeat(source)
+  source:stop()
+  source:play()
+end
+
 function restart_game()
   math.randomseed(os.time())
   changes_bg_music(bg_game_over_music,bg_music)
 
   reset_player()
   airplane_sfx:play()
+
   ammoBoxes = {}
   enemies = {}
   spawnedClouds = {}

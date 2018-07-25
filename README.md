@@ -26,8 +26,8 @@ $ cd kamikazerun/
 ```
 "path\to\LOVE\love.exe" .
 ```
-if on powershell and the love2d is installed on the default folder:
-```cmd
+If on powershell and the love2d is installed on the default folder:
+```
 "C:\Program Files\LOVE\love.exe" .
 ```
 
@@ -37,9 +37,9 @@ if on powershell and the love2d is installed on the default folder:
 - **S**: Down
 - **D**: Right
 - **SPACE**: Shot
+- **P**: Pause
+- **R**: Restart
 - **ESC**: Quit
 
 ### TODO:
 - Upgrade animations;
-- Ammo system;
-- Code Refactoring;
